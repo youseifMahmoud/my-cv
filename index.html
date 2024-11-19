@@ -6,6 +6,7 @@
     <link rel="icon" href="image/icon.png">
     <title>Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="main.js"></script>
 </head>
 <body>
     <nav>
@@ -34,10 +35,10 @@
     <main>
         <div id="about" class="about">
             <div class="container">
-                <img src="image/main.png" alt="">
+                <img src="image/main.png" alt="" class="fade-on-scroll">
                 <div class="right">
-                    <h5>About Me</h5>
-                    <p>A creative developer who builds sleek and responsive web applications.</p>
+                    <h5 class="fade-on-scroll">About Me</h5>
+                    <p class="fade-on-scroll">A creative developer who builds sleek and responsive web applications.</p>
                     <div class="details">
                         <div class="q">
                             <b>Name:</b>
@@ -47,52 +48,66 @@
                             <b>Phone:</b>
                         </div>
                         <div class="a">
-                            <p> Yousef Hany</p>
-                            <p> February 2, 2004</p>
-                            <p> Cairo</p>
-                            <p> hskeybdjuqlmada@gmail.com</p>
-                            <p> +20 1093035508</p>
+                            <p>Yousef Hany</p>
+                            <p>February 2, 2004</p>
+                            <p>Cairo</p>
+                            <p>hskeybdjuqlmada@gmail.com</p>
+                            <p>+20 1093035508</p>
                         </div>
                     </div>
                     <a href="#projects">2 Projects Complete</a>
                 </div>
             </div>
         </div>
+        
         <div id="skills" class="skills">
             <div class="container">
                 <h5>My Skills</h5>
                 <div class="skills-container">
                     <!-- Skill 1 -->
                     <div class="skill">
-                        <p>HTML5</p>
+                        <div class="skill-details">
+                            <p class="skill-name">HTML5</p>
+                            <p class="skill-percentage">90%</p>
+                        </div>
                         <div class="skill-bar">
                             <div class="skill-level" style="width: 90%;"></div>
                         </div>
                     </div>
                     <!-- Skill 2 -->
                     <div class="skill">
-                        <p>CSS3</p>
+                        <div class="skill-details">
+                            <p class="skill-name">CSS3</p>
+                            <p class="skill-percentage">85%</p>
+                        </div>
                         <div class="skill-bar">
                             <div class="skill-level" style="width: 85%;"></div>
                         </div>
                     </div>
                     <!-- Skill 3 -->
                     <div class="skill">
-                        <p>Python</p>
+                        <div class="skill-details">
+                            <p class="skill-name">Python</p>
+                            <p class="skill-percentage">70%</p>
+                        </div>
                         <div class="skill-bar">
                             <div class="skill-level" style="width: 70%;"></div>
                         </div>
                     </div>
                     <!-- Skill 4 -->
                     <div class="skill">
-                        <p>SQL</p>
+                        <div class="skill-details">
+                            <p class="skill-name">SQL</p>
+                            <p class="skill-percentage">50%</p>
+                        </div>
                         <div class="skill-bar">
                             <div class="skill-level" style="width: 50%;"></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>        
+        
     </main>
     <!-- projects Section -->
     <section id="projects" class="projects">

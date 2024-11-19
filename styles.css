@@ -24,6 +24,7 @@ html {
 body {
   background-color: black;
 }
+
 /* start nav */
 nav .container {
   background-color: rgba(0, 0, 0, 0.7); /* Initial transparency */
@@ -37,36 +38,67 @@ nav .container {
   transition: background-color 0.5s ease; /* Smooth transition */
   z-index: 1000; /* Keeps the nav above other elements */
 }
+
+/* Add an animation for the navigation bar */
+nav .container.scrolled {
+  background-color: rgba(0, 0, 0, 1); /* Darker background when scrolled */
+  transition: background-color 0.5s ease; /* Smooth transition */
+}
+
+/* Navigation Name */
 nav .container .name {
   font-family: fantasy;
   font-weight: 700;
   font-size: 32px;
   color: white;
+  opacity: 0;
+  animation: fadeInName 1s forwards;
+  animation-delay: 0.5s; /* Delay for a smooth effect */
 }
+
+@keyframes fadeInName {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Navigation Links */
 nav .container .links {
   display: flex;
   gap: 25px;
 }
+
 nav .container .links a {
   text-decoration: none;
-  font-family:sans-serif;
+  font-family: sans-serif;
   color: var(--main-color2);
-  font-size:24px;
+  font-size: 24px;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
 }
+
 nav .container .links a:first-child {
   color: var(--main-color1);
 }
+
 nav .container .links a:hover {
   color: var(--main-color1);
   cursor: pointer;
-  border-bottom: 2px solid var(--main-color1) ;
+  border-bottom: 2px solid var(--main-color1);
 }
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
 /* start responsive */
-@media(max-width:767px){
+@media (max-width: 767px) {
   nav .container .name {
     display: none;
   }
-  nav .container .links{
+  nav .container .links {
     margin: 0 auto;
     gap: 15px;
   }
@@ -76,29 +108,55 @@ nav .container .links a:hover {
 }
 /* end responsive */
 /* end nav */
-/* start header */
 
+/* start header */
 header .container {
   display: flex;
 }
+
 header .container .left {
   width: 50%;
   padding-top: 150px;
 }
+
 header .container .left h1 {
   color: var(--main-color1);
   font-family: sans-serif;
   font-size: 130px;
   line-height: 125px;
+  animation: slideInFromLeft 1s ease-out;
 }
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 header .container .left h1 span {
   color: white;
 }
+
 header .container .left h5 {
   color: var(--main-color2);
   font-size: 35px;
   padding: 50px 0px;
+  opacity: 0;
+  animation: fadeInText 1.5s ease-out forwards;
+  animation-delay: 1s; /* Delay for a smoother effect */
 }
+
+@keyframes fadeInText {
+  to {
+    opacity: 1;
+  }
+}
+
 header .container .left a {
   text-decoration: none;
   font-size: 25px;
@@ -106,21 +164,49 @@ header .container .left a {
   border: 1px solid var(--main-color2);
   padding: 12px;
   border-radius: 118px;
-  -webkit-border-radius: 118px;
-  -moz-border-radius: 118px;
-  -ms-border-radius: 118px;
-  -o-border-radius: 118px;
+  transition-duration: var(--trans);
+  animation: bounceIn 1s ease-out;
 }
-header .container .left a:hover{
+
+header .container .left a:hover {
   background-color: var(--main-color1);
   color: black;
-  transition-duration: var(--trans);
 }
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 header .container img {
   width: 50%;
+  opacity: 0;
+  animation: slideInFromRight 1.5s ease-out forwards;
+  animation-delay: 1.5s; /* Delay for a smooth effect */
 }
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 /* start responsive */
-@media(max-width:1300px){
+@media (max-width: 1300px) {
   header .container img {
     display: none;
   }
@@ -129,7 +215,7 @@ header .container img {
     margin: 0 auto;
   }
 }
-@media(max-width:767px){
+@media (max-width: 767px) {
   header .container .left h1 {
     font-size: 45px;
   }
@@ -138,6 +224,30 @@ header .container img {
     padding: 20px 0px;
   }
 }
+
+/* Keyframes for the fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Slight upward movement */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Class to be added when the element comes into view */
+.fadeIn {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+/* Class to trigger the fade-in effect */
+.fade-on-scroll {
+  opacity: 0;  /* Start as hidden */
+}
+
+
 /* end responsive */
 /* end header */
 /* start main */
@@ -210,56 +320,107 @@ header .container img {
 /* end responsive */
 /* end about */
 /* Skills Section */
-.skills .container {
-  padding: var(--section-padding);
-}
-.skills .container h5 {
-  color: white;
+/* Skills Section Styles */
+#skills {
+  padding: 120px 0; /* Increased padding for top/bottom */
+  background: linear-gradient(135deg, #4b5052, #000000); /* Soft gradient */
   text-align: center;
-  padding-bottom: 50px;
-  font-size: 35px;
-  font-family: sans-serif;
+  font-family: 'Arial', sans-serif;
 }
 
+#skills h5 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #ffffff; /* Dark text for contrast */
+  margin-bottom: 50px; /* Space below heading */
+  text-transform: uppercase; /* Styling for modern design */
+  letter-spacing: 2px;
+}
+/* Skill Bar */
+.skill-bar {
+  width: 100%;
+  height: 12px;
+  background-color: #e0e0e0;
+  border-radius: 50px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.skill-level {
+  height: 100%;
+  background: linear-gradient(90deg, #f7b42c, #fc575e);
+  border-radius: 50px 0 0 50px;
+  transition: width 2s ease-in-out; /* Smooth animation when width changes */
+}
 .skills-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  max-width: 800px; /* Limit content width */
+  margin: 0 auto; /* Center-align the section */
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* Space between skills */
 }
 
 .skill {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
 }
 
-.skill p {
-  font-size: 1.2rem;
-  color: #fff;
-  margin-bottom: 0.5rem;
-  text-align: left;
+.skill-details {
+  display: flex;
+  justify-content: space-between; /* Align skill name and percentage */
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.skill-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #444;
+}
+
+.skill-percentage {
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
 }
 
 .skill-bar {
-  background-color: #333;
-  border-radius: 10px;
-  height: 10px;
-  margin-top: 5px;
+  width: 100%;
+  height: 12px;
+  background-color: #e0e0e0; /* Light gray for unfilled bar */
+  border-radius: 50px; /* Fully rounded corners */
   overflow: hidden;
   position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .skill-level {
-  background-color: #f4d03f;
   height: 100%;
-  border-radius: 10px;
-  position: absolute;
+  background: linear-gradient(90deg, #f7b42c, #fc575e); /* Gradient stripe */
+  animation: slide-in 1.5s ease-in-out; /* Smooth animation */
+  border-radius: 50px; /* Matches bar corners */
 }
-@media (max-width: 768px) {
-  .skills-container {
-      grid-template-columns: 1fr;
+
+/* Animation for skill bars */
+@keyframes slide-in {
+  from {
+      width: 0;
+  }
+  to {
+      width: 100%; /* Inline styles override this */
   }
 }
+
+/* Hover effect for skill bars */
+.skill-level:hover {
+  background: linear-gradient(90deg, #fc575e, #f7b42c); /* Reverse gradient */
+  transition: background 0.3s ease-in-out;
+}
+
+
 /* Projects Section */
 .projects {
   background-color: rgba(223, 214, 214, 0.267);
